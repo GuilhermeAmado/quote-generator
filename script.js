@@ -5,14 +5,12 @@ const twitterButton = document.getElementById("twitter");
 const newQuoteButton = document.getElementById("new-quote");
 const loader = document.getElementById("loader");
 
-// Show loading
-function loading() {
+function showLoadingSpinner() {
     loader.hidden = false;
     quoteContainer.hidden = true;
 }
 
-// Hide loading
-function complete() {
+function removeLoadingSpinner() {
     if (!loader.hidden) {
         quoteContainer.hidden = false;
         loader.hidden = true;
@@ -21,7 +19,7 @@ function complete() {
 
 // Get quote from API
 async function getQuote() {
-    loading();
+    showLoadingSpinner();
     // const PROXY = "https://cors-anywhere.herokuapp.com/"
     const API = "https://favqs.com/api/qotd";
     try {
@@ -45,11 +43,9 @@ async function getQuote() {
         }
         quoteText.innerText = data.quote.body;
 
-        // Stop loader and show quote
-        complete();
+        removeLoadingSpinner();
 
     } catch (error) {
-        getQuote();
         console.log("Error getting quote", error);
     }
 }
