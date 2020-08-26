@@ -1,3 +1,9 @@
+const quoteContainer = document.getElementById("quote-container");
+const quoteText = document.getElementById("quote");
+const authorText = document.getElementById("author");
+const twitterButton = document.getElementById("twitter");
+const newQuoteButton = document.getElementById("new-quote");
+
 // Get quote from API
 async function getQuote() {
     const PROXY = "https://cors-anywhere.herokuapp.com/"
@@ -5,12 +11,38 @@ async function getQuote() {
     try {
         const response = await fetch(PROXY + API);
         const data = await response.json();
-        console.log(data);
+
+        // If Author is blank add "Unknown"
+        if (!data.quoteAuthor) {
+            authorText.innerText = "Unknown"
+        } else {
+            authorText.innerText = data.quoteAuthor;
+        }
+
+        // Reduce font size for long quotes
+        if (data.quoteText.length > 120) {
+            quoteText.classList.add("long-quote");
+        } else {
+            quoteText.classList.remove("long-quote");
+        }
+        quoteText.innerText = data.quoteText;
     } catch (error) {
         getQuote();
         console.log("Error getting quote", error);
     }
 }
+
+// Tweet quote
+function tweetQuote() {
+    const quote = quoteText.innerText;
+    const author = authorText.innerText;
+    const TWITTER = `https://twitter.com/intent/tweet?text=${quote} - ${author}`;
+    window.open(TWITTER, "_blank");
+}
+
+// Event listeners
+newQuoteButton.addEventListener("click", getQuote);
+twitterButton.addEventListener("click", tweetQuote);
 
 // On load:
 getQuote();
