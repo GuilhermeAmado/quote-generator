@@ -94,7 +94,7 @@ button:active {
   100% { transform: rotate(360deg); }
 }
 
-/* Media Query: Tablet or Smaller */
+
 @media screen and (max-width: 1000px) {
   .quote-container {
     margin: auto 20px;
@@ -102,5 +102,26 @@ button:active {
 
   .quote-text {
     font-size: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .fa-quote-left {
+    font-size: 2rem;
+  }
+
+  .quote-text {
+    font-size: 1.75rem;
+  }
+
+  .button-container {
+    margin: 10px auto 0;
+    flex-direction: column-reverse;
+    width: 50%;
+  }
+
+  button {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
   }
 }
