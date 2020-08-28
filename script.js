@@ -20,10 +20,10 @@ function removeLoadingSpinner() {
 // Get quote from API
 async function getQuote() {
     showLoadingSpinner();
-    // const PROXY = "https://cors-anywhere.herokuapp.com/"
+    const PROXY = "https://cors-anywhere.herokuapp.com/"
     const API = "https://favqs.com/api/qotd";
     try {
-        const response = await fetch(API);
+        const response = await fetch(PROXY + API);
         const data = await response.json();
         console.log(data.quote.author)
         console.log(data.quote.body)
