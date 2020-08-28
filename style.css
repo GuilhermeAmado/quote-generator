@@ -126,3 +126,10 @@ button:active {
     margin-bottom: 10px;
   }
 }
+
+@media screen and (max-width: 400px) {
+  button {
+    font-size: 0.7rem;
+    margin-bottom: 10px;
+  }
+}
