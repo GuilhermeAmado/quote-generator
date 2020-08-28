@@ -32,7 +32,7 @@ async function getQuote() {
         if (!data.quote.author) {
             authorText.innerText = "Unknown"
         } else {
-            authorText.innerText = data.quote.author;
+            authorText.innerText = data.quoteAuthor;
         }
 
         // Reduce font size for long quotes
@@ -41,7 +41,7 @@ async function getQuote() {
         } else {
             quoteText.classList.remove("long-quote");
         }
-        quoteText.innerText = data.quote.body;
+        quoteText.innerText = data.quoteText;
 
         removeLoadingSpinner();
 
